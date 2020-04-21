@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Prompt } from 'react-router-dom';
 import CourseForm from './courseForm';
 import courseStore from '../stores/courseStore';
 import authorStore from '../stores/authorStore';
@@ -29,7 +28,9 @@ const ManageCoursePage = props => {
     } else if (slug) {
       setCourse(courseStore.getCoursesBySlug(slug));
     }
-    return () => courseStore.removeChangeListener(onChange);
+    return () => {
+      authorStore.removeChangeListener(onChange);
+      courseStore.removeChangeListener(onChange)};
   }, [courses.length, props.match.params.slug]);
 
   const onChange = () => {

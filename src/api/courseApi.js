@@ -7,17 +7,17 @@ export function getCourses() {
     .catch(handleError);
 }
 
-export function getCourseBySlug(slug) {
-  return fetch(baseUrl + "?slug=" + slug)
-    .then(response => {
-      if (!response.ok) throw new Error("Network response was not ok.");
-      return response.json().then(courses => {
-        if (courses.length !== 1) throw new Error("Course not found: " + slug);
-        return courses[0]; // should only find one course for a given slug, so return it.
-      });
-    })
-    .catch(handleError);
-}
+// export function getCourseBySlug(slug) {
+//   return fetch(baseUrl + "?slug=" + slug)
+//     .then(response => {
+//       if (!response.ok) throw new Error("Network response was not ok.");
+//       return response.json().then(courses => {
+//         if (courses.length !== 1) throw new Error("Course not found: " + slug);
+//         return courses[0]; // should only find one course for a given slug, so return it.
+//       });
+//     })
+//     .catch(handleError);
+// }
 
 export function saveCourse(course) {
   return fetch(baseUrl + (course.id || ""), {

@@ -4,7 +4,7 @@
       "id": 1,
       "title": "Securing React Apps with Auth02",
       "slug": "react-auth0-authentication-security",
-      "authorId": 3,
+      "authorId": 1,
       "category": "JavaScript"
     },
     {
@@ -50,13 +50,34 @@
       "category": "Software Practices"
     },
     {
+      "id": 8,
+      "title": "Architecting Applications for the Real World",
+      "slug": "architecting-applications-dotnet",
+      "authorId": 1,
+      "category": "Software Architecture"
+    },
+    {
       "id": 9,
-      "slug": "asdag",
+      "title": "Becoming an Outlier: Reprogramming the Developer Mind",
+      "slug": "career-reboot-for-developer-mind",
+      "authorId": 1,
+      "category": "Career"
+    },
+    {
+      "id": 10,
+      "title": "Web Component Fundamentals",
+      "slug": "web-components-shadow-dom",
+      "authorId": 1,
+      "category": "HTML5"
+    },
+    {
+      "id": 11,
+      "slug": "asdf",
       "titlle": "",
       "authorId": 2,
-      "category": "asdfsa",
-      "title": "asdag",
-      "createdAt": 1587112084659
+      "category": "asdf",
+      "title": "asdf",
+      "createdAt": 1587459406723
     }
   ],
   "authors": [
@@ -71,6 +92,11 @@
     {
       "id": 3,
       "name": "Dan Wahlin"
+    },
+    {
+      "name": "Jared Leto",
+      "createdAt": 1587460709400,
+      "id": 4
     }
   ]
 }

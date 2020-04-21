@@ -3,7 +3,9 @@ import * as authorApi from '../api/authorApi';
 import actionTypes from './actionTypes';
 
 export function saveAuthor(author) {
+  console.log(author)
   return authorApi.saveAuthor(author).then(savedAuthor => {
+    console.log(savedAuthor)
     dispatcher.dispatch({
       actionType: author.id
         ? actionTypes.UPDATE_AUTHOR
@@ -18,6 +20,7 @@ export function loadAuthors() {
     dispatcher.dispatch({
       actionType: actionTypes.LOAD_AUTHORS,
       authors: authors
+      
     });
   });
 }

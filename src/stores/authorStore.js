@@ -4,25 +4,30 @@ import actionTypes from '../actions/actionTypes';
 
 const CHANGE_EVENT = 'change';
 let _authors = [];
-
+console.log(CHANGE_EVENT)
 class AuthorStore extends EventEmitter {
   addChangeListener(callback) {
+    console.log('add author')
+
     this.on(CHANGE_EVENT, callback);
   }
 
   removeChangeListener(callback) {
+    console.log('remove author')
+
     this.removeListener(CHANGE_EVENT, callback);
   }
 
   emitChange() {
     this.emit(CHANGE_EVENT);
   }
+
   getAuthors() {
     return _authors;
   }
 
-  getAuthorsBySlug(slug) {
-    return _authors.find(author => author.slug === slug);
+  getAuthorsById(id) {
+    return _authors.find(author => author.id === id);
   }
 }
 
@@ -31,12 +36,12 @@ const store = new AuthorStore();
 Dispatcher.register(action => {
   switch (action.actionType) {
     case actionTypes.CREATE_AUTHOR:
-      _authors.push(action.course);
+      _authors.push(action.author);
       store.emitChange();
       break;
     case actionTypes.DELETE_AUTHOR:
       _authors = _authors.filter(
-        course => course.id !== parseInt(action.id, 10)
+        author => author.id !== parseInt(action.id, 10)
       );
       store.emitChange();
       break;
@@ -45,8 +50,8 @@ Dispatcher.register(action => {
       store.emitChange();
       break;
     case actionTypes.UPDATE_AUTHOR:
-      _authors = _authors.map(course =>
-        course.id === action.course.id ? action.course : course
+      _authors = _authors.map(author =>
+        author.id === action.author.id ? action.author : author
       );
       store.emitChange();
       break;

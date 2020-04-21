@@ -2,39 +2,38 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const CourseList = props => {
+const AuthorList = props => {
+  console.log(props)
   return (
     <>
-      <h2>Courses</h2>
+      <h2>Authors</h2>
       <table className='table'>
         <thead>
           <tr>
             <th>&nbsp;</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Category</th>
+            <th>Name</th>
+            <th>Author ID</th>
           </tr>
         </thead>
         <tbody>
-          {props.courses.map(course => {
+          {props.authors.map(author => {
             return (
-              <tr key={course.id}>
+              <tr key={author.name}>
                 <td>
                   <button
                     className='btn btn-outline-danger'
                     onClick={() => {
-                      props.deleteCourse(course.id);
-                      toast.error('Course deleted.');
+                      props.deleteAuthor(author.id);
+                      toast.error('Author deleted.');
                     }}
                   >
                     Delete
                   </button>
                 </td>
                 <td>
-                  <Link to={'/course/' + course.slug}>{course.title}</Link>
+                  <Link to={'/author/' + author.id}>{author.name}</Link>
                 </td>
-                <td>{props.authorName(course.authorId)}</td>
-                <td>{course.category}</td>
+                <td>{author.id}</td>
               </tr>
             );
           })}
@@ -43,4 +42,4 @@ const CourseList = props => {
     </>
   );
 };
-export default CourseList;
+export default AuthorList;

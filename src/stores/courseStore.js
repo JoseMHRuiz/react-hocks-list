@@ -4,13 +4,18 @@ import actionTypes from '../actions/actionTypes';
 
 const CHANGE_EVENT = 'change';
 let _courses = [];
+console.log(CHANGE_EVENT)
 
 class CourseStore extends EventEmitter {
   addChangeListener(callback) {
+    console.log('add course')
+
     this.on(CHANGE_EVENT, callback);
   }
 
   removeChangeListener(callback) {
+    console.log('remove course')
+
     this.removeListener(CHANGE_EVENT, callback);
   }
 
@@ -22,6 +27,8 @@ class CourseStore extends EventEmitter {
   }
 
   getCoursesBySlug(slug) {
+    console.log(_courses)
+    console.log(slug)
     return _courses.find(course => course.slug === slug);
   }
 }
