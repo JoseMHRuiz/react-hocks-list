@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import courseStore from '../stores/courseStore';
-import authorStore from '../stores/authorStore';
+import trainerStore from '../stores/trainerStore';
 import CourseList from './courseList';
 import { Link } from 'react-router-dom';
 import { loadCourses, deleteCourse } from '../actions/courseActions';
-import { loadAuthors } from '../actions/authorActions';
+import { loadTrainers } from '../actions/trainerActions';
 
 const CoursePage = () => {
   const [courses, setCourses] = useState(courseStore.getCourses());
-  const [authors, setAuthors] = useState(authorStore.getAuthors());
+  const [trainers, setTrainers] = useState(trainerStore.getTrainers());
 
   useEffect(() => {
     courseStore.addChangeListener(onChange);
-    authorStore.addChangeListener(onChange);
+    trainerStore.addChangeListener(onChange);
     if (courseStore.getCourses().length === 0) loadCourses();
-    if (authorStore.getAuthors().length === 0) loadAuthors();
+    if (trainerStore.getTrainers().length === 0) loadTrainers();
     return () => {
       courseStore.removeChangeListener(onChange);
-      authorStore.removeChangeListener(onChange);
+      trainerStore.removeChangeListener(onChange);
     };
   }, []);
-  const authorName = id => {
-    let [authorNameFind] = authors.filter(_author => _author.id === id);
-    return authorNameFind && authorNameFind.name;
+  const trainerName = id => {
+    let [trainerNameFind] = trainers.filter(_trainer => _trainer.id === id);
+    return trainerNameFind && trainerNameFind.name;
   };
 
   const onChange = () => {
     setCourses(courseStore.getCourses());
-    setAuthors(authorStore.getAuthors());
+    setTrainers(trainerStore.getTrainers());
   };
 
   return (
@@ -39,8 +39,8 @@ const CoursePage = () => {
       </Link>
       <CourseList
         courses={courses}
-        authors={authors}
-        authorName={authorName}
+        trainers={trainers}
+        trainerName={trainerName}
         deleteCourse={deleteCourse}
       />
     </>
@@ -54,7 +54,7 @@ CourseList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      authorId: PropTypes.number.isRequired,
+      trainerId: PropTypes.number.isRequired,
       category: PropTypes.string.isRequired
     })
   )

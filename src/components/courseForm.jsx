@@ -16,27 +16,27 @@ const CourseForm = props => {
       />
 
       <div className='form-group'>
-        <label htmlFor='author'>Author</label>
+        <label htmlFor='trainer'>Trainer</label>
         <div className='field'>
           <select
-            id='author'
-            name='authorId'
-            value={props.course.authorId || ''}
+            id='trainer'
+            name='trainerId'
+            value={props.course.trainerId || ''}
             onChange={props.onChange}
             className='form-control'
           >
             <option value='' />
-            {props.authors.map(_author => {
+            {props.trainers.map(_trainer => {
               return (
-                <option key={_author.id} value={_author.id}>
-                  {_author.name}
+                <option key={_trainer.id} value={_trainer.id}>
+                  {_trainer.name}
                 </option>
               );
             })}
           </select>
         </div>
-        {props.errors.authorId && (
-          <div className='alert alert-danger'>{props.errors.authorId}</div>
+        {props.errors.trainerId && (
+          <div className='alert alert-danger'>{props.errors.trainerId}</div>
         )}
       </div>
 

@@ -1,41 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import CourseForm from './courseForm';
 import courseStore from '../stores/courseStore';
-import authorStore from '../stores/authorStore';
+import trainerStore from '../stores/trainerStore';
 import { toast } from 'react-toastify';
 import * as courseActions from '../actions/courseActions';
-import * as authorActions from '../actions/authorActions';
+import * as trainerActions from '../actions/trainerActions';
 
 const ManageCoursePage = props => {
   const [errors, setErrors] = useState({});
   const [courses, setCourses] = useState(courseStore.getCourses());
-  const [authors, setAuthors] = useState(authorStore.getAuthors());
+  const [trainers, setTrainers] = useState(trainerStore.getTrainers());
   const [course, setCourse] = useState({
     id: null,
     slug: '',
     titlle: '',
-    authorId: null,
+    trainerId: null,
     category: ''
   });
 
   useEffect(() => {
     courseStore.addChangeListener(onChange);
-    authorStore.addChangeListener(onChange);
+    trainerStore.addChangeListener(onChange);
     const slug = props.match.params.slug;
     if (courses.length === 0) {
       courseActions.loadCourses();
-      authorActions.loadAuthors();
+      trainerActions.loadTrainers();
     } else if (slug) {
       setCourse(courseStore.getCoursesBySlug(slug));
     }
     return () => {
-      authorStore.removeChangeListener(onChange);
+      trainerStore.removeChangeListener(onChange);
       courseStore.removeChangeListener(onChange)};
   }, [courses.length, props.match.params.slug]);
 
   const onChange = () => {
     setCourses(courseStore.getCourses());
-    setAuthors(authorStore.getAuthors());
+    setTrainers(trainerStore.getTrainers());
   };
 
   const handleChange = event => {
@@ -48,7 +48,7 @@ const ManageCoursePage = props => {
   const formIsValid = () => {
     const _errors = {};
     if (!course.title) _errors.title = 'Title is required';
-    if (!course.authorId) _errors.authorId = 'Author is required';
+    if (!course.trainerId) _errors.trainerId = 'Trainer is required';
     if (!course.category) _errors.category = 'Category is required';
 
     setErrors(_errors);
@@ -78,7 +78,7 @@ const ManageCoursePage = props => {
       <CourseForm
         errors={errors}
         course={course}
-        authors={authors}
+        trainers={trainers}
         onChange={handleChange}
         onSubmit={handleSubmit}
       />

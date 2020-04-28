@@ -11,7 +11,7 @@ const CourseList = props => {
           <tr>
             <th>&nbsp;</th>
             <th>Title</th>
-            <th>Author</th>
+            <th>Trainer</th>
             <th>Category</th>
           </tr>
         </thead>
@@ -33,7 +33,7 @@ const CourseList = props => {
                 <td>
                   <Link to={'/course/' + course.slug}>{course.title}</Link>
                 </td>
-                <td>{props.authorName(course.authorId)}</td>
+                <td>{props.trainerName(course.trainerId)}</td>
                 <td>{course.category}</td>
               </tr>
             );

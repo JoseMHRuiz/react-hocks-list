@@ -1,7 +1,7 @@
 import React from 'react';
 import TextInput from './common/textInput';
 
-const AuthorForm = props => {
+const TrainerForm = props => {
     console.log(props)
   return (
     <form onSubmit={props.onSubmit}>
@@ -12,7 +12,7 @@ const AuthorForm = props => {
         name='name'
         onChange={props.onChange}
         className='form-control'
-        value={props.author.name}
+        value={props.trainer.name}
         error={props.errors.name}
       />
       <input type='submit' value='Save' className='btn btn-primary' />
@@ -20,4 +20,4 @@ const AuthorForm = props => {
   );
 };
 
-export default AuthorForm;
+export default TrainerForm;

@@ -25,8 +25,8 @@ export function saveCourse(course) {
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
       ...course,
-      // Parse authorId to a number (in case it was sent as a string).
-      authorId: parseInt(course.authorId, 10)
+      // Parse trainerId to a number (in case it was sent as a string).
+      trainerId: parseInt(course.trainerId, 10)
     })
   })
     .then(handleResponse)
